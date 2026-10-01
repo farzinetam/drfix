@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DrFix | تعمیرات تخصصی نرم‌افزار گوشی | فرزین</title>
+<meta name="description" content="تعمیرات تخصصی نرم‌افزار گوشی‌های اندروید و iOS - فلش، آنلاک، ریکاوری، آپدیت و رفع مشکلات سیستم‌عامل">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Vazirmatn',sans-serif; }
+:root {
+  --bg:#0a0a0f; --card:#14141d; --accent:#6c5ce7; --accent2:#00d2ff;
+  --text:#eaeaf0; --muted:#8b8ba0;
+}
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); overflow-x:hidden; }
+a { color:inherit; text-decoration:none; }
+
+/* NAV */
+nav { position:fixed; top:0; width:100%; z-index:100; backdrop-filter:blur(12px);
+  background:rgba(10,10,15,.7); border-bottom:1px solid #ffffff12; }
+.nav-inner { max-width:1100px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 24px; }
+.logo { font-weight:800; font-size:1.4rem; }
+.logo span { background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+nav ul { display:flex; gap:24px; list-style:none; font-size:.95rem; }
+nav ul a:hover { color:var(--accent2); }
+@media(max-width:700px){ nav ul{display:none;} }
+
+/* HERO with latest phones as background */
+.hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; padding:100px 20px 60px; }
+.hero-bg { position:absolute; inset:0; z-index:0; }
+.hero-bg img.phone-ios { position:absolute; right:-6%; top:6%; width:min(46vw,520px); opacity:.35; transform:rotate(14deg); filter:drop-shadow(0 20px 60px rgba(108,92,231,.4)); }
+.hero-bg img.phone-android { position:absolute; left:-6%; bottom:-4%; width:min(44vw,500px); opacity:.35; transform:rotate(-16deg); filter:drop-shadow(0 20px 60px rgba(0,210,255,.4)); }
+@media(max-width:700px){ .hero-bg img{width:70vw; opacity:.22;} }
+.hero::before { content:''; position:absolute; inset:0; z-index:1;
+  background:radial-gradient(circle at 30% 20%, rgba(108,92,231,.15), transparent 50%),
+             radial-gradient(circle at 70% 80%, rgba(0,210,255,.12), transparent 50%); }
+.hero-content { position:relative; z-index:2; max-width:800px; }
+.badge { display:inline-block; padding:6px 18px; border:1px solid var(--accent); border-radius:99px; font-size:.85rem; color:var(--accent2); margin-bottom:24px; background:rgba(108,92,231,.1); }
+.hero h1 { font-size:clamp(2rem,5.5vw,3.6rem); font-weight:800; line-height:1.4; margin-bottom:20px; }
+.hero h1 em { font-style:normal; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.hero p { color:var(--muted); font-size:1.1rem; margin-bottom:36px; }
+.btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.btn { padding:14px 34px; border-radius:12px; font-weight:600; font-size:1rem; transition:.3s; display:inline-flex; align-items:center; gap:8px; }
+.btn-primary { background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#fff; }
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(108,92,231,.4); }
+.btn-ghost { border:1px solid #ffffff25; color:var(--text); }
+.btn-ghost:hover { border-color:var(--accent2); color:var(--accent2); }
+
+/* SECTIONS */
+section { padding:90px 24px; }
+.container { max-width:1100px; margin:auto; }
+.sec-title { text-align:center; font-size:clamp(1.6rem,3.5vw,2.4rem); font-weight:800; margin-bottom:14px; }
+.sec-sub { text-align:center; color:var(--muted); margin-bottom:56px; }
+
+/* SERVICES */
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:22px; }
+.card { background:var(--card); border:1px solid #ffffff10; border-radius:18px; padding:30px 24px; transition:.3s; }
+.card:hover { transform:translateY(-6px); border-color:var(--accent); box-shadow:0 14px 40px rgba(108,92,231,.2); }
+.card .icon { font-size:2.2rem; margin-bottom:16px; display:block; }
+.card h3 { font-size:1.15rem; margin-bottom:10px; }
+.card p { color:var(--muted); font-size:.92rem; line-height:1.8; }
+
+/* PHONE SHOWCASE */
+.showcase { display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap; }
+.showcase img { width:min(300px,70vw); border-radius:24px; filter:drop-shadow(0 24px 50px rgba(0,0,0,.6)); }
+.showcase div.info h3 { font-size:1.5rem; margin-bottom:12px; }
+.showcase div.info ul { list-style:none; color:var(--muted); line-height:2.1; font-size:.95rem; }
+.showcase div.info ul li::before { content:'✓ '; color:var(--accent2); }
+
+/* CONTACT */
+.contact-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; max-width:900px; margin:auto; }
+.c-card { background:var(--card); border:1px solid #ffffff10; border-radius:16px; padding:28px 20px; text-align:center; transition:.3s; display:block; }
+.c-card:hover { border-color:var(--accent2); transform:translateY(-4px); }
+.c-card .ci { font-size:2rem; display:block; margin-bottom:12px; }
+.c-card b { display:block; margin-bottom:6px; font-size:1.05rem; }
+.c-card span { color:var(--muted); font-size:.9rem; direction:ltr; }
+
+footer { text-align:center; padding:36px 20px; border-top:1px solid #ffffff10; color:var(--muted); font-size:.88rem; }
+footer b { color:var(--accent2); }
+
+/* reveal animation */
+.reveal { opacity:0; transform:translateY(30px); transition:.8s ease; }
+.reveal.show { opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Dr<span>Fix</span></div>
+    <ul>
+      <li><a href="#services">خدمات</a></li>
+      <li><a href="#devices">گوشی‌ها</a></li>
+      <li><a href="#contact">تماس</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg">
+    <!-- iPhone 17 Pro Max (آخرین iOS) -->
+    <img class="phone-ios" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/IPhone_17_Pro_Max_%28Cosmic_Orange%29_-_1.jpg/640px-IPhone_17_Pro_Max_%28Cosmic_Orange%29_-_1.jpg" alt="iPhone 17 Pro Max">
+    <!-- Galaxy S25 Ultra (آخرین اندروید) -->
+    <img class="phone-android" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Samsung_Galaxy_S25_Ultra_-_SAMSUNG_MOBILE_PRESS.jpg/640px-Samsung_Galaxy_S25_Ultra_-_SAMSUNG_MOBILE_PRESS.jpg" alt="Galaxy S25 Ultra">
+  </div>
+  <div class="hero-content">
+    <span class="badge">تعمیرات تخصصی نرم‌افزار گوشی 📱</span>
+    <h1>گوشی شما، مشکلات نرم‌افزاریش با <em>DrFix</em> تمومه!</h1>
+    <p>تعمیرات حرفه‌ای نرم‌افزار گوشی‌های <b>اندروید</b> و <b>iOS</b> — فلش، آنلاک، آپدیت، ریکاوری دیتا و رفع هرگونه مشکل سیستم‌عامل توسط فرزین با سال‌ها تجربه.</p>
+    <div class="btns">
+      <a href="tel:+989360479638" class="btn btn-primary">📞 تماس فوری</a>
+      <a href="https://t.me/farzinetam" class="btn btn-ghost" target="_blank">✈️ تلگرام</a>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="container">
+    <h2 class="sec-title reveal">خدمات ما</h2>
+    <p class="sec-sub reveal">هر مشکلی که گوشی نرم‌افزاری داشته باشه، اینجا حلش می‌کنیم</p>
+    <div class="grid">
+      <div class="card reveal"><span class="icon">⚙️</span><h3>فلش و آپدیت سیستم‌عامل</h3><p>نصب رام رسمی و کاستوم رام برای اندروید و آپدیت iOS بدون هیچ ریسکی با بکاپ کامل.</p></div>
+      <div class="card reveal"><span class="icon">🔓</span><h3>آنلاک و رفع قفل</h3><p>حذف قفل الگو، پین، FRP و مشکلات اکانت iCloud (قانونی) با جدیدترین متدها.</p></div>
+      <div class="card reveal"><span class="icon">🩺</span><h3>رفع مشکلات نرم‌افزاری</h3><p>ریاستارت مداوم، هنگ، گرین‌لاین بوت، مرگ سیستم‌عامل، مشکل بعد از آپدیت و... .</p></div>
+      <div class="card reveal"><span class="icon">💾</span><h3>ریکاوری اطلاعات</h3><p>بازیابی عکس، مخاطب و فایل‌های حذف‌شده از حافظه داخلی گوشی.</p></div>
+      <div class="card reveal"><span class="icon">🧹</span><h3>بهینه‌سازی و سرعت</h3><p>حل مشکل کندی، پاک‌سازی نرم‌افزاری و بهبود عملکرد و باتری گوشی‌های قدیمی‌تر.</p></div>
+      <div class="card reveal"><span class="icon">🛡️</span><h3>حذف ویروس و بدافزار</h3><p>پاک‌سازی کامل بدافزار، تبلیغات مزاحم و جاسوس‌افزار از گوشی شما.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="devices">
+  <div class="container">
+    <h2 class="sec-title reveal">تخصص ما روی آخرین مدل‌ها</h2>
+    <p class="sec-sub reveal">اندروید و iOS — از قدیمی‌ترین تا جدیدترین</p>
+    <div class="showcase reveal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/IPhone_17_Pro_Max_%28Cosmic_Orange%29_-_1.jpg/480px-IPhone_17_Pro_Max_%28Cosmic_Orange%29_-_1.jpg" alt="iPhone 17 Pro Max">
+      <div class="info">
+        <h3>🍎 iOS — iPhone 17 Pro Max</h3>
+        <ul>
+          <li>فلش و ریکاوری و DFU</li>
+          <li>رفع مشکلات آپدیت iOS 26/27</li>
+          <li>بازیابی بکاپ iTunes / iCloud</li>
+          <li>حل مشکل اپل آیدی و اکتیویشن</li>
+        </ul>
+      </div>
+    </div>
+    <br><br>
+    <div class="showcase reveal">
+      <div class="info" style="text-align:left;">
+        <h3>🤖 Android — Galaxy S25 Ultra</h3>
+        <ul>
+          <li>فلش رام رسمی و کاستوم (Odin / Fastboot)</li>
+          <li>رفع مشکل FRP و قفل‌های امنیتی</li>
+          <li>روت، آنروت و نصب ریکاوری</li>
+          <li>تعمیر IMEI نرم‌افزاری (قانونی)</li>
+        </ul>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Samsung_Galaxy_S25_Ultra_-_SAMSUNG_MOBILE_PRESS.jpg/480px-Samsung_Galaxy_S25_Ultra_-_SAMSUNG_MOBILE_PRESS.jpg" alt="Galaxy S25 Ultra">
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2 class="sec-title reveal">تماس با DrFix</h2>
+    <p class="sec-sub reveal">همین الان مشکل گوشیت رو بگو</p>
+    <div class="contact-cards">
+      <a href="tel:+989360479638" class="c-card reveal">
+        <span class="ci">📞</span><b>تلفن / واتساپ</b><span dir="ltr">+98 936 047 9638</span>
+      </a>
+      <a href="https://t.me/farzinetam" target="_blank" class="c-card reveal">
+        <span class="ci">✈️</span><b>تلگرام</b><span>@farzinetam</span>
+      </a>
+      <a href="https://instagram.com/farzinetam" target="_blank" class="c-card reveal">
+        <span class="ci">📸</span><b>اینستاگرام</b><span>farzinetam</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><b>DrFix</b> — تعمیرات تخصصی نرم‌افزار گوشی | فرزین</p>
+  <p style="margin-top:8px;">© ۲۰۲۵ تمامی حقوق محفوظ است.</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold:.15 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
